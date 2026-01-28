@@ -1,49 +1,34 @@
-#### VARIABLES GLOBALES
-
-intentos = 0
-#palabra_usuario = input("Escriba su palabra:")
-palabra_secreta = "perro"
-letras_verificadas = []
-palabras_verificadas = []
+#
 cantidad_letras = 5
+palabra_secreta = "Monja"
+intentos = 0
 
-def verificar_palabra(palabra_usuario, palabra_secreta):
-
+def verificador_palabra(palabra_ingresada, palabra_secreta):
     letras_verificadas = []
 
-    for letra in range(cantidad_letras):
-        
-        palabras_iguales = palabra_usuario[letra] == palabra_secreta[letra]
-        letra_en_palabra_secreta = palabra_usuario[letra] in palabra_secreta
+    for i in range(cantidad_letras):
+        las_palabras_son_iguales = palabra_ingresada[i] == palabra_secreta[i]
+        la_letra_existe_en_la_palabra = palabra_ingresada[i] in palabra_secreta
 
-        if palabras_iguales:
-            letras_verificadas.append(f"[{palabra_usuario[letra]}]")
-        elif letra_en_palabra_secreta:
-            letras_verificadas.append(f"({palabra_usuario[letra]})")
+        if las_palabras_son_iguales:
+            letras_verificadas.append(f"[{palabra_ingresada[i]}]")
+        elif la_letra_existe_en_la_palabra:
+            letras_verificadas.append(f"({palabra_ingresada[i]})")
         else:
-            letras_verificadas.append(f"{palabra_usuario[letra]}")
+            letras_verificadas.append(palabra_ingresada[i])
 
-    return palabras_verificadas.append(letras_verificadas)
+    return letras_verificadas
 
-def conteo_de_intentos(attemps):
-    
-    while attemps <= 5:
 
-        palabra_usuario = input("Escriba su palabra:")
-        verificar_palabra(palabra_usuario, palabra_secreta)
-        
-        if palabra_usuario == palabra_secreta:
-            for i in palabras_verificadas:
-                print(i)
-            #print(palabras_verificadas)
-            print("Fin del juego")
-            break
 
-        else:
-            for i in palabras_verificadas:
-                print(i)
-            #print(palabras_verificadas)
-            attemps = attemps + 1
-            print(f"Le quedan {5 - attemps} intentos")
+while intentos < 6:
+    print(f"te quedan {6 - intentos} intentos")
+    intentos += 1
 
-conteo_de_intentos(intentos)
+    palabra_ingresada = input("Ingrese una palabra: ")
+
+    resultado = verificador_palabra(palabra_ingresada, palabra_secreta)
+    print(resultado)
+    if palabra_ingresada == palabra_secreta:
+        print('ganaste')
+        break
